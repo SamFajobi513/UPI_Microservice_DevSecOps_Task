@@ -1,5 +1,5 @@
 const { createBooking } = require("../models/bookingModel");
-const { publishNewRideRequest } = require("../services/kafkaProducer");
+const { publishNewRideRequest } = require("../../services/kafkaProducer");
 const { invokeDriverMatching } = require("../services/daprClient");
 
 
