@@ -24,7 +24,7 @@ const kafkaClient = new kafka.KafkaClient({ kafkaHost: process.env.KAFKA_BROKER 
 const consumer = new kafka.Consumer(kafkaClient, [{ topic: "new-ride-requests", partition: 0 }], { autoCommit: true });
 
 consumer.on("message", async (message) => {
-  console.log("🚖 New Ride Request Received:", message.value);
+  console.log("New Ride Request Received:", message.value);
   
   const rideRequest = JSON.parse(message.value);
   const { rideId, pickupLocation } = rideRequest;
@@ -33,17 +33,17 @@ consumer.on("message", async (message) => {
     const driver = await findNearestDriver(pickupLocation);
 
     if (!driver) {
-      console.log("❌ No available drivers found.");
+      console.log("No available drivers found.");
       return;
     }
 
     await assignDriverToRide(rideId, driver.id);
 
-    console.log(`✅ Driver ${driver.id} assigned to Ride ${rideId}`);
+    console.log(`Driver ${driver.id} assigned to Ride ${rideId}`);
 
     await notifyBookingService(rideId, driver.id);
   } catch (error) {
-    console.error("❌ Error processing ride request:", error);
+    console.error("Error processing ride request:", error);
   }
 });
 

@@ -1,6 +1,6 @@
 const { createBooking } = require("../models/bookingModel");
 const { publishNewRideRequest } = require("./services/kafkaProducer");
-const { invokeDriverMatching } = require(".services/daprClient");
+const { invokeDriverMatching } = require("./services/daprClient");
 
 
 exports.bookRide = async (req, res) => {
@@ -17,7 +17,7 @@ exports.bookRide = async (req, res) => {
     await invokeDriverMatching(newBooking);
 
     res.status(201).json({ message: "Ride booked successfully", newBooking });
-  } catch (error) {
+  } catch (error) { 
     console.error(error);
     res.status(500).json({ error: "Internal server error" });
   }
