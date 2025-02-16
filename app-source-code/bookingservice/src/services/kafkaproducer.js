@@ -1,8 +1,9 @@
-const { Kafka } = require("kafkajs");
+const { Kafka, Partitioners } = require("kafkajs");
 
 const kafka = new Kafka({
   clientId: "booking-service",
   brokers: [process.env.KAFKA_BROKER],
+  createPartitioner: Partitioners.DefaultPartitioner,
 });
 
 const producer = kafka.producer();

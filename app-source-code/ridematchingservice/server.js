@@ -63,5 +63,5 @@ async function notifyBookingService(rideId, driverId) {
 }
 
 app.listen(process.env.PORT, () => {
-  console.log(`🚀 Driver Matching Service running on port ${process.env.PORT}`);
+  console.log(`Driver Matching Service running on port ${process.env.PORT}`);
 });

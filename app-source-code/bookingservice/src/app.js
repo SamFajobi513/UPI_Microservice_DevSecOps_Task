@@ -1,6 +1,6 @@
 const express = require("express");
 const dotenv = require("dotenv");
-const bookingRoutes = require("../routes/bookingRoutes");
+const bookingRoutes = require("./routes/bookingRoutes");
 
 dotenv.config();
 const app = express();
